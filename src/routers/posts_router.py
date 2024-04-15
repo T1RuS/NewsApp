@@ -1,8 +1,9 @@
 from datetime import datetime
 from typing import List, Optional
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from starlette import status
 
 from dependencis import get_db
 from schemas import posts_schemas
@@ -55,6 +56,12 @@ async def api_update_post(
 ):
     post_obj = posts_services.get_post(post_id=post_id, db=db)
 
+    if not post_obj:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f'Post with id = {post_id} does not exist'
+        )
+
     post_updated = posts_services.update_post(
         post_obj=post_obj,
         post_data=post_data,
@@ -69,6 +76,12 @@ async def api_delete_post(
         db: Session = Depends(get_db)
 ):
     post_obj = posts_services.get_post(post_id=post_id, db=db)
+
+    if not post_obj:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f'Post with id = {post_id} does not exist'
+        )
 
     deleted_post = posts_services.delete_post(
         post_obj=post_obj,
