@@ -1,20 +1,29 @@
+:root {
+  --black-color: #222831;
+  --dark-color: #393E46;
+  --grey-color: #EEEEEE;
+}
+
+*,
+*::before,
+*::after { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+  min-width: 100%;
+  background-color: var(--black-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: calc(10px + 2vmin);
+  padding: 10px 10px 0 10px;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--dark-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -24,33 +33,49 @@
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: var(--dark-color);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.header-side {
+  margin-left: 10px;
+  margin-right: 10px;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
 }
 
+.header-link {
+  color: var(--grey-color);
+  text-decoration: none;
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.all-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
 
 .post {
-  background: #282c34;
+  background: var(--dark-color);
   border-radius: 16px;
-  padding: 24px;
-  margin-bottom: 8px;
+  padding: 16px;
 }
 
 .post > h1 {
-  color: red;
-  font-size: 16px;
+  color: var(--grey-color);
+  font-size: 40px
 }
 
 .post > p {
-  color: azure;
-  font-size: 8px;
+  color: var(--grey-color);
 }
