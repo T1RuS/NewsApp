@@ -1,15 +1,14 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 
-
 const Header = () => {
     return (
         <header>
-            <div>
-                <Link to={'/'}>Домой</Link>
-                <Link to={'/posts'}>Посты</Link>
-            </div>
-        </header>
+          <div className={"header-side"}>
+              <Link className={"header-link"} to={'/'}>Домой</Link>
+              <Link className={"header-link"} to={'/posts'}>Посты</Link>
+          </div>
+      </header>
     );
 };
 
