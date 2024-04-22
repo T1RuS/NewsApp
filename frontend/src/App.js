@@ -7,6 +7,7 @@ import {
 import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import AllPosts from "./pages/AllPosts";
+import CreatePost from "./pages/CreatePost";
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} exact/>
           <Route path="/posts" element={<AllPosts/>} exact/>
+          <Route path="/create-post" element={<CreatePost/>} exact/>
         </Routes>
       </Layout>
     </Router>
