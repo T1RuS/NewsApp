@@ -8,6 +8,8 @@ import Layout from "./components/Layout";
 import HomePage from "./pages/HomePage";
 import AllPosts from "./pages/AllPosts";
 import CreatePost from "./pages/CreatePost";
+import ViewPost from "./pages/viewPost";
+import EditPost from "./pages/EditPost";
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
           <Route path="/" element={<HomePage />} exact/>
           <Route path="/posts" element={<AllPosts/>} exact/>
           <Route path="/create-post" element={<CreatePost/>} exact/>
+          <Route path="/post/:post_id" element={<ViewPost/>} exact/>
+          <Route path="/edit-post/:post_id" element={<EditPost/>} exact/>
         </Routes>
       </Layout>
     </Router>

@@ -14,9 +14,16 @@ const AllPosts = () => {
     }, [])
 
     return (
-        <div className='all-posts'>
+        <div className='all-posts block'>
             {
-                posts.map(post => <Post title={post.title} content={post.content} key={post.id}/>)
+                posts.map(
+                    post => <Post title={post.title}
+                                  content={post.content}
+                                  key={post.id}
+                                  post_id={post.id}
+                                  link
+                    />
+                )
             }
         </div>
     );

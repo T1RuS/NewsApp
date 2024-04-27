@@ -1,9 +1,16 @@
 import React from 'react';
+import {Link} from "react-router-dom";
 
-const Post = ({title, content}) => {
+const Post = ({title, content, post_id, link}) => {
     return (
         <div className="post">
-            <h1>{title}</h1>
+            {
+                link ?
+                    <Link to={'/post/' + post_id} className={'header-link'}>{title}</Link>
+                    :
+                    <h1>{title}</h1>
+            }
+
             <hr/>
             <p>{content}</p>
         </div>
