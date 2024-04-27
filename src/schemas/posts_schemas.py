@@ -9,6 +9,9 @@ class CreatePost(BaseModel):
 class ViewPost(CreatePost):
     id: int
 
+    class Config:
+        orm_mode = True
+
 
 class AllPost(ViewPost):
-    id_deleted: bool
+    is_deleted: bool
