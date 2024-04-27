@@ -1,18 +1,25 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
+import {useNavigate, useParams} from "react-router-dom";
+import axios from "axios";
+import {baseURL} from "../config";
 import Input from "../components/ui/input/Input";
 import Button from "../components/ui/button/Button";
-import axios from "axios";
-import {useNavigate} from "react-router-dom";
-import { baseURL } from "../config";
 
-
-const CreatePost = () => {
+const EditPost = () => {
+    const post_id = useParams().post_id
     const navigate = useNavigate()
 
     const [data, setData] = useState({
+        id: undefined,
         title: undefined,
         content: undefined
     })
+
+    useEffect(() => {
+        axios.get(baseURL + 'posts/' + post_id).then((response) => {
+            setData(response.data)
+        })
+    }, [])
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -23,7 +30,7 @@ const CreatePost = () => {
             }
         }
 
-        axios.post(baseURL + 'posts/', JSON.stringify(data), config).then(
+        axios.patch(baseURL + 'posts/' + post_id, JSON.stringify(data), config).then(
             function (response) {
                 return navigate('/posts')
             }
@@ -45,4 +52,4 @@ const CreatePost = () => {
     );
 };
 
-export default CreatePost;
+export default EditPost;

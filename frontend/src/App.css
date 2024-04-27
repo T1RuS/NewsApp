@@ -69,13 +69,36 @@ header {
   background: var(--dark-color);
   border-radius: 16px;
   padding: 16px;
+  min-width: 300px;
 }
 
 .post > h1 {
   color: var(--grey-color);
-  font-size: 40px
+  font-size: 20px
 }
 
 .post > p {
   color: var(--grey-color);
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  gap: 15px;
+}
+
+.form-block {
+  background: var(--dark-color);
+  padding: 16px;
+  width: max-content;
+  border-radius: 8px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
 }
