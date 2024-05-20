@@ -1,13 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Link, useNavigate, useParams} from "react-router-dom";
 import axios from "axios";
 import {baseURL} from "../config";
 import Post from "../components/Post";
 import Button from "../components/ui/button/Button";
+import AuthContext from "../context/AuthContext";
 
 const ViewPost = () => {
     const post_id = useParams().post_id
     const navigate = useNavigate()
+    const {authTokens} = useContext(AuthContext)
 
     const [data, setData] = useState({
         title: undefined,
@@ -15,7 +17,14 @@ const ViewPost = () => {
     })
 
     useEffect(() => {
-        axios.get(baseURL + 'posts/' + post_id).then((response) => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization':'Bearer ' + String(authTokens),
+            }
+        }
+
+        axios.get(baseURL + 'posts/' + post_id, config).then((response) => {
             setData(response.data)
         })
     }, [])

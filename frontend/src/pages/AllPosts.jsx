@@ -1,14 +1,23 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import axios from "axios";
 import Post from "../components/Post";
 
 import { baseURL } from "../config";
+import AuthContext from "../context/AuthContext";
 
 const AllPosts = () => {
+    const {authTokens} = useContext(AuthContext)
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        axios.get(baseURL + 'posts/').then((response) => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization':'Bearer ' + String(authTokens),
+            }
+        }
+
+        axios.get(baseURL + 'posts/', config).then((response) => {
             setPosts(response.data)
         })
     }, [])

@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import Input from "../components/ui/input/Input";
 import Button from "../components/ui/button/Button";
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import { baseURL } from "../config";
+import AuthContext from "../context/AuthContext";
 
 
 const CreatePost = () => {
     const navigate = useNavigate()
+    const {authTokens} = useContext(AuthContext)
 
     const [data, setData] = useState({
         title: undefined,
@@ -19,7 +21,8 @@ const CreatePost = () => {
 
         const config = {
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization':'Bearer ' + String(authTokens),
             }
         }
 
