@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.staticfiles import StaticFiles
 
-from routers import posts_router
+from routers import posts_router, user_router, main_router
 
 app = FastAPI()
 
@@ -18,6 +19,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.mount('/static', StaticFiles(directory='../frontend/build/static'), 'static')
+
+
+app.include_router(main_router.router)
+app.include_router(user_router.router)
 app.include_router(posts_router.router)
 
 

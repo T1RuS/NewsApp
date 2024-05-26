@@ -5,7 +5,7 @@ from fastapi.requests import Request
 
 router = APIRouter(prefix='', tags=['main'])
 
-templates = Jinja2Templates(directory="../../frontend/build")
+templates = Jinja2Templates(directory="../frontend/build")
 
 
 @router.get("/{rest_of_path:path}")
